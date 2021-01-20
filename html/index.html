@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Page Title</title>
+  <script>function loadXMLDoc(id) {
+    var xmlhttp;
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function()
+    {
+	if (xmlhttp.readyState==4 && this.status == 200)
+	{
+	    document.getElementById("fromserver").innerHTML=xmlhttp.responseText;
+	}
+    }
+    xmlhttp.open("GET","q?id="+id,true);
+    xmlhttp.send();
+}</script>
+  </head>
+  <body>
+    <form action="/post" method="post">
+      <textarea type="text" name="input" id="textfield" onkeyup="loadXMLDoc(this.value)"></textarea>
+      <br />
+      <input type="submit" name="button" id="button" value="Send" onchange="loadXMLDoc()"/>
+    </form>
+    <div id="fromserver">
+    </div>
+  </body>
+</html>
